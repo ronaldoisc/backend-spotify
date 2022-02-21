@@ -1,5 +1,4 @@
 
-const { generateToken } = require('../helper/jwt');
 var request = require('request'); // "Request" library
 const Token=require('../models/Token');
 const renewToken =  async (req, res) => {

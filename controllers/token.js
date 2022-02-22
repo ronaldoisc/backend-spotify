@@ -21,15 +21,6 @@ const renewToken =  async (req, res) => {
             
             var currenTime = today.getHours() + (today.getMinutes() < 10 ? '.0': '.') + today.getMinutes();
             let lastDoc = (await Token.find({}).sort({_id: -1}).limit(1))[0];
-            // const tokenSpotify= new Token({token,update_at:currenTime});
-            // await tokenSpotify.save();
-            //     res.status(201).json({
-            //         ok: true,
-            //         token,
-            //         currenTime,
-            //         lastDoc
-            //     });
-
             if((lastDoc.update_at - currenTime) <= -1){
                 
                 const tokenSpotify= new Token({token, update_at:currenTime});

@@ -18,15 +18,11 @@ const renewToken =  async (req, res) => {
             let token = body.access_token;
             var today = new Date();
 
-            const minutes=today.getMinutes();
-            const hours=today.getHours();
-            var currenTime;
-            if(minutes <10){
-                currenTime = hours + ".0" + minutes;
-            }else{
-                currenTime = hours + "." + minutes;
-            }
-            // var currenTime = today.getHours() + "." + today.getMinutes();
+            // const minutes=today.getMinutes();
+            // const hours=today.getHours();
+            // var currenTime;
+            
+            var currenTime = today.getHours() + ((today.getMinutes() <10) ? ".0" : '.' ) + today.getMinutes();
             let lastDoc = (await Token.find({}).sort({_id: -1}).limit(1))[0];
 
             if((lastDoc.time - currenTime) <= -1){

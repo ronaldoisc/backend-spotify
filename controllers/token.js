@@ -24,10 +24,7 @@ const renewToken =  async (req, res) => {
             
             var currenTime = today.getHours() + ((today.getMinutes() <10) ? ".0" : '.' ) + today.getMinutes();
             let lastDoc = (await Token.find({}).sort({_id: -1}).limit(1))[0];
-
-            if((lastDoc.time - currenTime) <= -1){
-                
-                const tokenSpotify= new Token({token,time:currenTime});
+            const tokenSpotify= new Token({token,time:currenTime});
                 await tokenSpotify.save();
                 res.status(201).json({
                     ok: true,
@@ -35,17 +32,28 @@ const renewToken =  async (req, res) => {
                     currenTime,
                     lastDoc
                 });
-              await Token.findOneAndDelete(lastDoc.id);
+                
+            // if((lastDoc.time - currenTime) <= -1){
+                
+            //     const tokenSpotify= new Token({token,time:currenTime});
+            //     await tokenSpotify.save();
+            //     res.status(201).json({
+            //         ok: true,
+            //         token,
+            //         currenTime,
+            //         lastDoc
+            //     });
+            //   await Token.findOneAndDelete(lastDoc.id);
 
-            }else{
-                res.status(201).json({
-                    ok: true,
-                    token:lastDoc.token,
-                    currenTime,
-                    lastDoc
-                })
+            // }else{
+            //     res.status(201).json({
+            //         ok: true,
+            //         token:lastDoc.token,
+            //         currenTime,
+            //         lastDoc
+            //     })
 
-            }
+            // }
            
 
            

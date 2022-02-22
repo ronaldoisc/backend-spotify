@@ -18,25 +18,31 @@ const renewToken =  async (req, res) => {
             let token = body.access_token;
             var today = new Date();
             var currenTime = today.getHours() + "." + today.getMinutes();
-            let lastDoc = (await Token.find({}).sort({_id: -1}).limit(1))[0];
-            
-            if((lastDoc.time - currenTime) <= -2){
+            // let lastDoc = (await Token.find({}).sort({_id: -1}).limit(1))[0];
+            const tokenSpotify= new Token({token,time:currenTime});
+            await tokenSpotify.save();
+            res.status(201).json({
+                        ok: true,
+                        token,
+                    });
+            // if((lastDoc.time - currenTime) <= -2){
+            //     console.log("holaa")
 
-                const tokenSpotify= new Token({token,time:currenTime});
-                await tokenSpotify.save();
-                res.status(201).json({
-                    ok: true,
-                    token,
-                });
-              await Token.findOneAndDelete(lastDoc.id);
+            //     const tokenSpotify= new Token({token,time:currenTime});
+            //     await tokenSpotify.save();
+            //     res.status(201).json({
+            //         ok: true,
+            //         token,
+            //     });
+            //   await Token.findOneAndDelete(lastDoc.id);
 
-            }else{
-                res.status(201).json({
-                    ok: true,
-                    token:lastDoc.token
-                })
+            // }else{
+            //     res.status(201).json({
+            //         ok: true,
+            //         token:lastDoc.token
+            //     })
 
-            }
+            // }
            
 
            

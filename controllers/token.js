@@ -18,8 +18,9 @@ const renewToken =  async (req, res) => {
             let token = body.access_token;
             var today = new Date();
             var currenTime = today.getHours() + "." + today.getMinutes();
+            const timeParsed=parseFloat(currenTime);
             // let lastDoc = (await Token.find({}).sort({_id: -1}).limit(1))[0];
-            const tokenSpotify= new Token({token,time:currenTime});
+            const tokenSpotify= new Token({token,time:timeParsed});
             await tokenSpotify.save();
             res.status(201).json({
                         ok: true,

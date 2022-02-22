@@ -6,7 +6,7 @@ const TokenSchema=Schema({
         type:String
     },
     time:{
-        type:String
+        type:Number
     }
 })
 

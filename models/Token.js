@@ -5,8 +5,8 @@ const TokenSchema=Schema({
     token:{
         type:String
     },
-    time:{
-        type:Number
+    update_at:{
+        type:String
     }
 })
 

@@ -35,13 +35,17 @@ const renewToken =  async (req, res) => {
                 res.status(201).json({
                     ok: true,
                     token,
+                    currenTime,
+                    lastDoc
                 });
               await Token.findOneAndDelete(lastDoc.id);
 
             }else{
                 res.status(201).json({
                     ok: true,
-                    token:lastDoc.token
+                    token:lastDoc.token,
+                    currenTime,
+                    lastDoc
                 })
 
             }

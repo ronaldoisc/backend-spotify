@@ -17,7 +17,15 @@ const renewToken =  async (req, res) => {
           
             let token = body.access_token;
             var today = new Date();
-            var currenTime = today.getHours() + "." + today.getMinutes();
+
+            const minutes=today.getMinutes();
+            const hours=today.getHours();
+            if(minutes <10){
+                var currenTime = hours + ".0" + minutes;
+            }else{
+                var currenTime = hours + "." + minutes;
+            }
+            // var currenTime = today.getHours() + "." + today.getMinutes();
             let lastDoc = (await Token.find({}).sort({_id: -1}).limit(1))[0];
 
 

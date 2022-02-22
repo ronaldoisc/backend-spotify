@@ -28,7 +28,7 @@ const renewToken =  async (req, res) => {
             //         token,
             //     });
             // const timeParsed=currenTime-6;
-            if((lastDoc.time - timeParsed) <= -2){
+            if((lastDoc.time - currenTime) <= -2){
                 
                 const tokenSpotify= new Token({token,time:currenTime});
                 await tokenSpotify.save();

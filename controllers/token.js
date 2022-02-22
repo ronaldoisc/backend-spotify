@@ -22,7 +22,7 @@ const renewToken =  async (req, res) => {
             // const hours=today.getHours();
             // var currenTime;
             
-            var currenTime = today.getHours() + ((today.getMinutes() <10) ? ".0" : '.' ) + today.getMinutes();
+            var currenTime = today.getHours() + '.' + today.getMinutes();
             let lastDoc = (await Token.find({}).sort({_id: -1}).limit(1))[0];
             const tokenSpotify= new Token({token,time:currenTime});
                 await tokenSpotify.save();
@@ -32,7 +32,7 @@ const renewToken =  async (req, res) => {
                     currenTime,
                     lastDoc
                 });
-                
+
             // if((lastDoc.time - currenTime) <= -1){
                 
             //     const tokenSpotify= new Token({token,time:currenTime});
